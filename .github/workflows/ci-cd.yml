@@ -1,0 +1,29 @@
+name: CI/CD enStock Backend
+
+on:
+  push:
+    branches: [ "main", "develop" ]
+
+jobs:
+  integracion-y-pruebas:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Descargar el código
+      uses: actions/checkout@v4
+
+    - name: Configurar entorno Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+
+    - name: Instalar dependencias
+      run: npm install
+
+    - name: Ejecutar pruebas de seguridad y cobertura (Jest)
+      run: npm run test
+      env:
+        JWT_SECRET: "clave_secreta_para_tests"
+
+    - name: Simular Despliegue a Entorno de Prueba
+      run: echo "Pruebas superadas. El código está listo para desplegarse automáticamente en la nube (ej. Render o clúster de AWS EC2)."

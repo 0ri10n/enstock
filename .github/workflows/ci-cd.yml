@@ -23,7 +23,7 @@ jobs:
     - name: Ejecutar pruebas de seguridad y cobertura (Jest)
       run: npm run test
       env:
-        JWT_SECRET: "clave_secreta_para_tests"
+        JWT_SECRET: ${{ secrets.JWT_SECRET }}
 
     - name: Simular Despliegue a Entorno de Prueba
       run: echo "Pruebas superadas. El código está listo para desplegarse automáticamente en la nube (ej. Render o clúster de AWS EC2)."
